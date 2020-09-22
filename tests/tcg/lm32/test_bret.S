@@ -11,11 +11,12 @@ tc_fail
 bi 1f
 
 mark:
+rcsr r5, IE
 tc_pass
 
 1:
 test_name BRET_2
-rcsr r3, IE
+mv r3, r5
 check_r3 5
 
 test_name BRET_3

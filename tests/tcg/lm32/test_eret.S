@@ -11,11 +11,12 @@ tc_fail
 bi 1f
 
 mark:
+rcsr r5, IE
 tc_pass
 
 1:
 test_name ERET_2
-rcsr r3, IE
+mv r3, r5
 check_r3 3
 
 test_name ERET_3

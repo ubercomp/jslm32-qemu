@@ -16,71 +16,71 @@ _reset_handler:
 
 _breakpoint_handler:
 	ori r25, r25, 1
-	addi ra, ba, 4
 	mvhi r24, hi(JSLM32_CTRL_DEV_ADDR)
 	ori r24, r24, lo(JSLM32_CTRL_DEV_ADDR)
 	sw (r24+0), r25
-	ret
+	addi r23, ba, 4
+	b r23
 	nop
 	nop
 
 _instruction_bus_error_handler:
 	ori r25, r25, 2
-	addi ra, ea, 4
 	mvhi r24, hi(JSLM32_CTRL_DEV_ADDR)
 	ori r24, r24, lo(JSLM32_CTRL_DEV_ADDR)
 	sw (r24+0), r25
-	ret
+	addi r23, ea, 4
+	b r23
 	nop
 	nop
 
 _watchpoint_handler:
 	ori r25, r25, 4
-	addi ra, ba, 4
 	mvhi r24, hi(JSLM32_CTRL_DEV_ADDR)
 	ori r24, r24, lo(JSLM32_CTRL_DEV_ADDR)
 	sw (r24+0), r25
-	ret
+	addi r23, ba, 4
+	b r23
 	nop
 	nop
 
 _data_bus_error_handler:
 	ori r25, r25, 8
-	addi ra, ea, 4
 	mvhi r24, hi(JSLM32_CTRL_DEV_ADDR)
 	ori r24, r24, lo(JSLM32_CTRL_DEV_ADDR)
 	sw (r24+0), r25
-	ret
+	addi r23, ea, 4
+	b r23
 	nop
 	nop
 
 
 _divide_by_zero_handler:
 	ori r25, r25, 16
-	addi ra, ea, 4
 	mvhi r24, hi(JSLM32_CTRL_DEV_ADDR)
 	ori r24, r24, lo(JSLM32_CTRL_DEV_ADDR)
 	sw (r24+0), r25
-	ret
+	addi r23, ea, 4
+	b r23
 	nop
 	nop
 
 _interrupt_handler:
 	ori r25, r25, 32
-	addi ra, ea, 4
 	mvhi r24, hi(JSLM32_CTRL_DEV_ADDR)
 	ori r24, r24, lo(JSLM32_CTRL_DEV_ADDR)
 	sw (r24+0), r25
-	ret
+	addi r23, ea, 4
+	b r23
 	nop
 	nop
 
 _system_call_handler:
 	ori r25, r25, 64
-	addi ra, ea, 4
 	mvhi r24, hi(JSLM32_CTRL_DEV_ADDR)
 	ori r24, r24, lo(JSLM32_CTRL_DEV_ADDR)
 	sw (r24+0), r25
-	ret
+	addi r23, ea, 4
+	b r23
 	nop
 	nop

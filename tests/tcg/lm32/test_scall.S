@@ -11,14 +11,16 @@ wcsr IE, r1
 mvi r8, 0
 insn:
 scall
+mv r5, ea
+rcsr r6, IE
 check_excp 64
 
 test_name SCALL_2
-mv r3, ea
+mv r3, r5
 check_r3 insn
 
 test_name SCALL_3
-rcsr r3, IE
+mv r3, r6
 check_r3 2
 
 end
