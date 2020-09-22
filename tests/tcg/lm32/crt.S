@@ -1,4 +1,4 @@
-.set JSLM32_CTRL_DEV_ADDR, 0xffff0000
+.set JSLM32_CTRL_DEV_ADDR, 0x04000000
 
 .text
 .global _start
@@ -16,20 +16,20 @@ _reset_handler:
 
 _breakpoint_handler:
 	ori r25, r25, 1
-	addi ba, ba, 4
-        mvhi r24, hi(JSLM32_CTRL_DEV_ADDR)
-        ori r24, r24, lo(JSLM32_CTRL_DEV_ADDR)
-        sw (r24+0), r25
-	bret
+	addi ra, ba, 4
+	mvhi r24, hi(JSLM32_CTRL_DEV_ADDR)
+	ori r24, r24, lo(JSLM32_CTRL_DEV_ADDR)
+	sw (r24+0), r25
+	ret
 	nop
 	nop
 
 _instruction_bus_error_handler:
 	ori r25, r25, 2
 	addi ra, ea, 4
-        mvhi r24, hi(JSLM32_CTRL_DEV_ADDR)
-        ori r24, r24, lo(JSLM32_CTRL_DEV_ADDR)
-        sw (r24+0), r25
+	mvhi r24, hi(JSLM32_CTRL_DEV_ADDR)
+	ori r24, r24, lo(JSLM32_CTRL_DEV_ADDR)
+	sw (r24+0), r25
 	ret
 	nop
 	nop
@@ -37,19 +37,19 @@ _instruction_bus_error_handler:
 _watchpoint_handler:
 	ori r25, r25, 4
 	addi ra, ba, 4
-        mvhi r24, hi(JSLM32_CTRL_DEV_ADDR)
-        ori r24, r24, lo(JSLM32_CTRL_DEV_ADDR)
-        sw (r24+0), r25
+	mvhi r24, hi(JSLM32_CTRL_DEV_ADDR)
+	ori r24, r24, lo(JSLM32_CTRL_DEV_ADDR)
+	sw (r24+0), r25
 	ret
 	nop
 	nop
 
 _data_bus_error_handler:
 	ori r25, r25, 8
-        addi ra, ea, 4
-        mvhi r24, hi(JSLM32_CTRL_DEV_ADDR)
-        ori r24, r24, lo(JSLM32_CTRL_DEV_ADDR)
-        sw (r24+0), r25
+	addi ra, ea, 4
+	mvhi r24, hi(JSLM32_CTRL_DEV_ADDR)
+	ori r24, r24, lo(JSLM32_CTRL_DEV_ADDR)
+	sw (r24+0), r25
 	ret
 	nop
 	nop
@@ -57,30 +57,30 @@ _data_bus_error_handler:
 
 _divide_by_zero_handler:
 	ori r25, r25, 16
-        addi ra, ea, 4
-        mvhi r24, hi(JSLM32_CTRL_DEV_ADDR)
-        ori r24, r24, lo(JSLM32_CTRL_DEV_ADDR)
-        sw (r24+0), r25
+	addi ra, ea, 4
+	mvhi r24, hi(JSLM32_CTRL_DEV_ADDR)
+	ori r24, r24, lo(JSLM32_CTRL_DEV_ADDR)
+	sw (r24+0), r25
 	ret
 	nop
 	nop
 
 _interrupt_handler:
 	ori r25, r25, 32
-        addi ra, ea, 4
-        mvhi r24, hi(JSLM32_CTRL_DEV_ADDR)
-        ori r24, r24, lo(JSLM32_CTRL_DEV_ADDR)
-        sw (r24+0), r25
+	addi ra, ea, 4
+	mvhi r24, hi(JSLM32_CTRL_DEV_ADDR)
+	ori r24, r24, lo(JSLM32_CTRL_DEV_ADDR)
+	sw (r24+0), r25
 	ret
 	nop
 	nop
 
 _system_call_handler:
 	ori r25, r25, 64
-	addi ea, ea, 4
-        mvhi r24, hi(JSLM32_CTRL_DEV_ADDR)
-        ori r24, r24, lo(JSLM32_CTRL_DEV_ADDR)
-        sw (r24+0), r25
-	eret
+	addi ra, ea, 4
+	mvhi r24, hi(JSLM32_CTRL_DEV_ADDR)
+	ori r24, r24, lo(JSLM32_CTRL_DEV_ADDR)
+	sw (r24+0), r25
+	ret
 	nop
 	nop
