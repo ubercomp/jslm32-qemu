@@ -4,7 +4,7 @@ ENTRY(_start)
 __DYNAMIC = 0;
 
 MEMORY {
-	ram : ORIGIN = 0x08000000, LENGTH = 0x04000000  /* 64M */
+	ram : ORIGIN = 0x08000000, LENGTH = 0x00100000  /* 1M */
 }
 
 SECTIONS
