@@ -1,5 +1,3 @@
-.set JSLM32_CTRL_DEV_ADDR, 0x04000000
-
 .text
 .global _start
 
@@ -16,71 +14,71 @@ _reset_handler:
 
 _breakpoint_handler:
 	ori r25, r25, 1
-	mvhi r24, hi(JSLM32_CTRL_DEV_ADDR)
-	ori r24, r24, lo(JSLM32_CTRL_DEV_ADDR)
-	sw (r24+0), r25
-	addi r23, ba, 4
-	b r23
+        user r0, r0, r0, 0x1
+        addi r24, ba, 4
+	b r24
 	nop
 	nop
+        nop
+        nop
 
 _instruction_bus_error_handler:
 	ori r25, r25, 2
-	mvhi r24, hi(JSLM32_CTRL_DEV_ADDR)
-	ori r24, r24, lo(JSLM32_CTRL_DEV_ADDR)
-	sw (r24+0), r25
-	addi r23, ea, 4
-	b r23
+        user r0, r0, r0, 0x2
+	addi r24, ea, 4
+	b r24
 	nop
 	nop
+        nop
+        nop
 
 _watchpoint_handler:
 	ori r25, r25, 4
-	mvhi r24, hi(JSLM32_CTRL_DEV_ADDR)
-	ori r24, r24, lo(JSLM32_CTRL_DEV_ADDR)
-	sw (r24+0), r25
-	addi r23, ba, 4
-	b r23
+        user r0, r0, r0, 0x3
+	addi r24, ba, 4
+	b r24
 	nop
 	nop
+        nop
+        nop
 
 _data_bus_error_handler:
 	ori r25, r25, 8
-	mvhi r24, hi(JSLM32_CTRL_DEV_ADDR)
-	ori r24, r24, lo(JSLM32_CTRL_DEV_ADDR)
-	sw (r24+0), r25
-	addi r23, ea, 4
-	b r23
+        user r0, r0, r0, 0x4
+	addi r24, ea, 4
+	b r24
 	nop
 	nop
+        nop
+        nop
 
 
 _divide_by_zero_handler:
 	ori r25, r25, 16
-	mvhi r24, hi(JSLM32_CTRL_DEV_ADDR)
-	ori r24, r24, lo(JSLM32_CTRL_DEV_ADDR)
-	sw (r24+0), r25
-	addi r23, ea, 4
-	b r23
+        user r0, r0, r0, 0x5
+	addi r24, ea, 4
+	b r24
 	nop
 	nop
+        nop
+        nop
 
 _interrupt_handler:
 	ori r25, r25, 32
-	mvhi r24, hi(JSLM32_CTRL_DEV_ADDR)
-	ori r24, r24, lo(JSLM32_CTRL_DEV_ADDR)
-	sw (r24+0), r25
-	addi r23, ea, 4
-	b r23
+        user r0, r0, r0, 0x6
+        addi r24, ea, 4
+        b r24
 	nop
-	nop
+        nop
+        nop
+        nop
 
 _system_call_handler:
 	ori r25, r25, 64
-	mvhi r24, hi(JSLM32_CTRL_DEV_ADDR)
-	ori r24, r24, lo(JSLM32_CTRL_DEV_ADDR)
-	sw (r24+0), r25
+        user r0, r0, r0, 0x7
 	addi r23, ea, 4
 	b r23
 	nop
 	nop
+        nop
+        nop
